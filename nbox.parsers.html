@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Frameworks" href="nbox.framework.html" /><link rel="prev" title="nbox Model" href="nbox.model.html" />
 
-    <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
+    <meta name="generator" content="sphinx-4.3.1, furo 2021.11.23"/>
         <title>Parsers - nbox 0.2.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     
     
 
@@ -214,7 +214,7 @@ parser. We have also provided a few basic parsers such as <code class="docutils 
 <span id="documentation"></span><h2>Documentation<a class="headerlink" href="#module-nbox.parsers" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.parsers.BaseParser">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">BaseParser</span></span><a class="headerlink" href="#nbox.parsers.BaseParser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">BaseParser</span></span><a class="headerlink" href="#nbox.parsers.BaseParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the base parser class which has the required methods to process
 the three kind of structures:</p>
@@ -243,7 +243,7 @@ the three kind of structures:</p>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">ImageParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">post_proc_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_infer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">ImageParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">post_proc_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_infer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nbox.parsers.BaseParser" title="nbox.parsers.BaseParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.parsers.BaseParser</span></code></a></p>
 <p>single unified Image parser that consumes different types of data and returns a processed numpy array</p>
 <dl class="field-list simple">
@@ -258,11 +258,11 @@ operation</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser.rescale">
-<span class="sig-name descname"><span class="pre">rescale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser.rescale" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">rescale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser.rescale" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser.rearrange">
-<span class="sig-name descname"><span class="pre">rearrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser.rearrange" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">rearrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser.rearrange" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser.process_primitive">
@@ -284,7 +284,7 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.parsers.TextParser">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">TextParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.TextParser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">TextParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.TextParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nbox.parsers.BaseParser" title="nbox.parsers.BaseParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.parsers.BaseParser</span></code></a></p>
 <p>Unified Text parsing engine, returns tokenized dictionaries</p>
 <dl class="field-list simple">
@@ -342,11 +342,9 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
 
         <div class="related-information">
               Copyright &#169; 2021, nimblebox.ai |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>. |
-            <a class="muted-link" href="_sources/nbox.parsers.rst.txt"
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/nbox.parsers.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -383,6 +381,6 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     </body>
 </html>

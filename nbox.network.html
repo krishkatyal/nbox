@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Utils" href="nbox.utils.html" /><link rel="prev" title="sklearn specific methods" href="nbox.framework.sklearn.html" />
 
-    <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
+    <meta name="generator" content="sphinx-4.3.1, furo 2021.11.23"/>
         <title>Network Methods - nbox 0.2.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     
     
 
@@ -209,14 +209,14 @@
 <span id="network-methods"></span><h1>Network Methods<a class="headerlink" href="#module-nbox.network" title="Permalink to this headline">¶</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="nbox.network.NBXAPIError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">NBXAPIError</span></span><a class="headerlink" href="#nbox.network.NBXAPIError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">NBXAPIError</span></span><a class="headerlink" href="#nbox.network.NBXAPIError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.network.one_click_deploy">
-<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">one_click_deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ovms2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbox_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.one_click_deploy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">one_click_deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ovms2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbox_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.one_click_deploy" title="Permalink to this definition">¶</a></dt>
 <dd><p>One-Click-Deploy method v1 that takes in the torch model, converts to ONNX and then deploys on NBX Platform.</p>
-<p>Avoid using this function manually and use <cite>model.deploy()</cite> instead</p>
+<p>Avoid using this function manually and use <code class="docutils literal notranslate"><span class="pre">model.deploy()</span></code> or nboxCLI instead.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -226,13 +226,25 @@
 <li><p><strong>nbox_meta</strong> (<em>dict</em><em>, </em><em>optional</em>) – metadata for the nbox.Model() object being deployed</p></li>
 <li><p><strong>wait_for_deployment</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, acts like a blocking call (sync vs async)</p></li>
 <li><p><strong>convert_args</strong> (<em>str</em><em>, </em><em>optional</em>) – if deployment type == “ovms2” can pass extra arguments to MO</p></li>
+<li><p><strong>deployment_id</strong> (<em>str</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code> to put this model under, if you do not pass this
+it will automatically create a new deployment check <a class="reference external" href="https://nimblebox.ai/oneclick">platform</a>
+for more info or check the logs.</p></li>
+<li><p><strong>deployment_name</strong> (<em>str</em><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code> is not given and you want to create a new
+deployment group (ie. webserver will create a new <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code>) you can tell what name you
+want, be default it will create a random name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>if deployment is successful then push then return the URL endpoint else return None</p>
+<dd class="field-even"><p><dl class="simple">
+<dt>if <code class="docutils literal notranslate"><span class="pre">wait_for_deployment</span> <span class="pre">==</span> <span class="pre">True</span></code>, returns the URL endpoint of the deployed</dt><dd><p>model</p>
+</dd>
+<dt>access_key(str, None): if <code class="docutils literal notranslate"><span class="pre">wait_for_deployment</span> <span class="pre">==</span> <span class="pre">True</span></code>, returns the data access key of</dt><dd><p>the deployed model</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(str, None)</p>
+<dd class="field-odd"><p>endpoint (str, None)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -267,11 +279,9 @@
 
         <div class="related-information">
               Copyright &#169; 2021, nimblebox.ai |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>. |
-            <a class="muted-link" href="_sources/nbox.network.rst.txt"
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/nbox.network.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -289,6 +299,6 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     </body>
 </html>
