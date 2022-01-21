@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="quick.html" />
 
-    <meta name="generator" content="sphinx-4.3.1, furo 2021.11.23"/>
-        <title>nbox 0.2.4 documentation</title>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+        <title>nbox 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
     
     
 
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">nbox 0.2.4 documentation</div></a>
+      <a href="#"><div class="brand">nbox 0.8.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.4 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.8.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,6 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_plug.html">How to plug your own models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox-serving.html">nbox Serving</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
 <ul>
@@ -174,7 +175,26 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.auth.html">nbox.auth module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operators</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nbox.operators.html">nbox.operators package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbox.operators.lib.html">nbox.operators.lib module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbox.operators.operator.html">nbox.operators.operator module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.operators.operator.html">nbox.operators.operator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.operators.lib.html">nbox.operators.lib module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Jobs</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="nbox.jobs.html">nbox.jobs package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbox.jobs.cli.html">nbox.jobs.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbox.jobs.jobs.html">nbox.jobs.jobs module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.jobs.utils.html">nbox.jobs.utils module</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
 <ul>
@@ -245,13 +265,13 @@
 be very small. If it is very small, a smart engineer can open it up and debug it. The metric to always
 aim for is total lines of code which should stand below 1000 for <code class="docutils literal notranslate"><span class="pre">top_dir</span></code>, other submodules can
 contain <code class="docutils literal notranslate"><span class="pre">dicts</span></code> that occupy a large % of code.</p>
-<p>As of <code class="docutils literal notranslate"><span class="pre">nbox</span> <span class="pre">==</span> <span class="pre">0.2.4</span></code> this is where the stats stand!</p>
+<p>As of <code class="docutils literal notranslate"><span class="pre">nbox</span> <span class="pre">==</span> <span class="pre">0.8.0</span></code> this is where the stats stand!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLOC</span> <span class="n">Directory</span>       <span class="n">SLOC</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">Language</span> <span class="p">(</span><span class="n">Sorted</span><span class="p">)</span>
-<span class="mi">1069</span>    <span class="n">top_dir</span>         <span class="n">python</span><span class="o">=</span><span class="mi">1069</span>
+<span class="mi">1181</span>    <span class="n">top_dir</span>         <span class="n">python</span><span class="o">=</span><span class="mi">1181</span>
 <span class="mi">88</span>      <span class="n">framework</span>       <span class="n">python</span><span class="o">=</span><span class="mi">88</span>
 
 <span class="n">Totals</span> <span class="n">grouped</span> <span class="n">by</span> <span class="n">language</span> <span class="p">(</span><span class="n">dominant</span> <span class="n">language</span> <span class="n">first</span><span class="p">):</span>
-<span class="n">python</span><span class="p">:</span>        <span class="mi">1157</span> <span class="p">(</span><span class="mf">100.00</span><span class="o">%</span><span class="p">)</span>
+<span class="n">python</span><span class="p">:</span>        <span class="mi">1269</span> <span class="p">(</span><span class="mf">100.00</span><span class="o">%</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you want to see something be added or found bug, <a class="reference external" href="https://github.com/NimbleBoxAI/nbox/issues/new">raise an issue</a>.</p>
@@ -268,9 +288,10 @@ contain <code class="docutils literal notranslate"><span class="pre">dicts</span
 <li class="toctree-l1"><a class="reference internal" href="quick_plug.html">How to plug your own models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbox.cli.html#module-nbox.cli">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbox.cli.html#methods">Methods</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="nbox-serving.html">nbox Serving</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -278,21 +299,41 @@ contain <code class="docutils literal notranslate"><span class="pre">dicts</span
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="nbox.load.html">Loading models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.model.html">nbox Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbox.model.html#module-nbox.model">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbox.model.html#documentation">Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.parsers.html">Parsers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbox.parsers.html#module-nbox.parsers">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbox.parsers.html#documentation">Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.framework.html">Frameworks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbox.framework.html#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nbox.framework.html#supporting-methods">Supporting methods</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.auth.html">nbox.auth module</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Operators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nbox.operators.html">nbox.operators package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbox.operators.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.operators.operator.html">nbox.operators.operator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.operators.lib.html">nbox.operators.lib module</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Jobs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nbox.jobs.html">nbox.jobs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbox.jobs.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.jobs.utils.html">nbox.jobs.utils module</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
