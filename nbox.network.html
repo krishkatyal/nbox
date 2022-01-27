@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Utils" href="nbox.utils.html" /><link rel="prev" title="sklearn specific methods" href="nbox.framework.sklearn.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
-        <title>Network Methods - nbox 0.8.1 documentation</title>
+        <title>Network Methods - nbox 0.8.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.8.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.8.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.8.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.8.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -225,52 +225,8 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.network">
-<span id="network-methods"></span><h1>Network Methods<a class="headerlink" href="#module-nbox.network" title="Permalink to this headline">¶</a></h1>
-<dl class="py exception">
-<dt class="sig sig-object py" id="nbox.network.NBXAPIError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">NBXAPIError</span></span><a class="headerlink" href="#nbox.network.NBXAPIError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.network.deploy_model">
-<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">deploy_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbox_meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.deploy_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>One-Click-Deploy method v3 that takes in a .nbox file and deploys it to the nbox server.
-Avoid using this function manually and use <code class="docutils literal notranslate"><span class="pre">model.deploy()</span></code> or nboxCLI instead.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>export_model_path</strong> (<em>str</em>) – path to the file to upload</p></li>
-<li><p><strong>deployment_type</strong> (<em>str</em><em>, </em><em>optional</em>) – type of deployment strategy</p></li>
-<li><p><strong>nbox_meta</strong> (<em>dict</em><em>, </em><em>optional</em>) – metadata for the nbox.Model() object being deployed</p></li>
-<li><p><strong>wait_for_deployment</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, acts like a blocking call (sync vs async)</p></li>
-<li><p><strong>convert_args</strong> (<em>str</em><em>, </em><em>optional</em>) – if deployment type == “ovms2” can pass extra arguments to MO</p></li>
-<li><p><strong>deployment_id</strong> (<em>str</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code> to put this model under, if you do not pass this
-it will automatically create a new deployment check <a class="reference external" href="https://nimblebox.ai/oneclick">platform</a>
-for more info or check the logs.</p></li>
-<li><p><strong>deployment_name</strong> (<em>str</em><em>, </em><em>optional</em>) – if <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code> is not given and you want to create a new
-deployment group (ie. webserver will create a new <code class="docutils literal notranslate"><span class="pre">deployment_id</span></code>) you can tell what name you
-want, be default it will create a random name.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>if <code class="docutils literal notranslate"><span class="pre">wait_for_deployment</span> <span class="pre">==</span> <span class="pre">True</span></code>, returns the URL endpoint of the deployed</dt><dd><p>model</p>
-</dd>
-<dt>access_key(str, None): if <code class="docutils literal notranslate"><span class="pre">wait_for_deployment</span> <span class="pre">==</span> <span class="pre">True</span></code>, returns the data access key of</dt><dd><p>the deployed model</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>endpoint (str, None)</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.network.deploy_job">
-<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">deploy_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule_meta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.deploy_job" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+          <section id="network-methods">
+<h1>Network Methods<a class="headerlink" href="#network-methods" title="Permalink to this headline">¶</a></h1>
 </section>
 
         </article>
