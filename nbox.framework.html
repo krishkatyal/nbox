@@ -228,29 +228,6 @@
           <section id="frameworks">
 <h1>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">¶</a></h1>
 <p>This section deals exclusively with conversion operations across different frameworks.</p>
-<span class="target" id="module-nbox.framework"></span><p>This submodule concerns itself with conversion of different framworks to other frameworks.
-It achieves this by providing a fix set of functions for each framework. There are a couple of
-caveats that the developer must know about.</p>
-<p>1. We use joblib to serialize the model, see <a class="reference external" href="https://stackoverflow.com/questions/12615525/what-are-the-different-use-cases-of-joblib-versus-pickle">reason</a> so when you will try to unpickle the model <code class="docutils literal notranslate"><span class="pre">pickle</span></code> will not work correctly and will throw the error
-<code class="docutils literal notranslate"><span class="pre">_pickle.UnpicklingError:</span> <span class="pre">invalid</span> <span class="pre">load</span> <span class="pre">key,</span> <span class="pre">'\x00'</span></code>. So ensure that you use <code class="docutils literal notranslate"><span class="pre">joblib</span></code>.</p>
-<p>2. Serializing torch models directly is a bit tricky and weird, you can read more about it
-<a class="reference external" href="https://github.com/pytorch/pytorch/blob/master/torch/csrc/jit/docs/serialization.md">here</a>,
-so technically pytorch torch.save() automatically pickles the object along with the required
-datapoint (model hierarchy, constants, data, etc.)</p>
-<section id="lazy-loading">
-<h2>Lazy Loading<a class="headerlink" href="#lazy-loading" title="Permalink to this headline">¶</a></h2>
-<p>Lazy loading is a mechanism that allows you to load the model only when you need it, this is easier said than
-done because you need to add many checks and balances at varaious locations in the code. The way it works here
-is that we check from a list of modules which are required to import which part of the model.</p>
-</section>
-<section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.framework.get_meta">
-<span class="sig-prename descclassname"><span class="pre">nbox.framework.</span></span><span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.get_meta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generic method to convert the inputs to get <code class="docutils literal notranslate"><span class="pre">nbox_meta['metadata']</span></code> dictionary</p>
-</dd></dl>
-</section>
 <section id="supporting-methods">
 <h2>Supporting methods<a class="headerlink" href="#supporting-methods" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -314,8 +291,6 @@ is that we check from a list of modules which are required to import which part 
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Frameworks</a><ul>
-<li><a class="reference internal" href="#lazy-loading">Lazy Loading</a></li>
-<li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#supporting-methods">Supporting methods</a></li>
 </ul>
 </li>
