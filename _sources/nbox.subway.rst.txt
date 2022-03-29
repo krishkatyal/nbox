@@ -1,7 +1,7 @@
-init module
-===========
+Subways
+=======
 
-.. automodule:: nbox.init
+.. automodule:: nbox.subway
    :members:
    :undoc-members:
    :show-inheritance:

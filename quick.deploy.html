@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox.cli module" href="nbox.cli.html" /><link rel="prev" title="Quickstart" href="quick.0.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.03.04"/>
-        <title>init module - nbox 0.9.3 documentation</title>
+        <title>QuickStart with Deployment - nbox 0.9.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -153,9 +153,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,8 +214,56 @@
           </label>
         </div>
         <article role="main">
-          <section id="init-module">
-<h1>init module<a class="headerlink" href="#init-module" title="Permalink to this headline">#</a></h1>
+          <section id="quickstart-with-deployment">
+<h1>QuickStart with Deployment<a class="headerlink" href="#quickstart-with-deployment" title="Permalink to this headline">#</a></h1>
+<p>File: <a class="reference external" href="https://github.com/NimbleBoxAI/nbox/blob/staging/recipes/torch_resnet18.py">torch_resnet18.py</a></p>
+<p>Deployment is a major bottleneck for DS/ML engineers to get their systems into production. Unless any
+model is in production there really is no way to complete a project. <code class="docutils literal notranslate"><span class="pre">nbox</span></code> as an SDK makes deployment just one
+command, <strong>literally</strong>!</p>
+<p>When on our platform, first step is to:</p>
+<ul class="simple">
+<li><p>open terminal from the App Bar on your left and type the command below, it initialises the <code class="docutils literal notranslate"><span class="pre">cuda101</span></code> environment and installs our SDK <code class="docutils literal notranslate"><span class="pre">nbox</span></code>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">cuda101</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">nbox</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>open <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> and type the command <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">nbox</span></code> and restart the notebook.</p></li>
+</ul>
+<p>First you need to do some imports and you can load your own model, for this tutorial we want to deploy <code class="docutils literal notranslate"><span class="pre">torchvision/resnet18</span></code>. Loading models is super easy, either use a publicly available models or bring in your own models.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbox</span>
+<span class="kn">from</span> <span class="nn">nbox.utils</span> <span class="kn">import</span> <span class="n">get_image</span>
+
+<span class="c1"># load pretrained model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nbox</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"torchvision/resnet18"</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,)</span>
+
+<span class="c1"># literally pass model a URL and it will process it</span>
+<span class="n">image_url</span> <span class="o">=</span> <span class="s2">"https://github.com/NimbleBoxAI/nbox/raw/master/tests/assets/cat.jpg"</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Now comes the cool part, i.e. deploying models. There is already support for deploying a tonne of models directly from nbox. For deployment you need to give it any input_object that can be used to perform trace (<code class="docutils literal notranslate"><span class="pre">torchscript</span></code> / <code class="docutils literal notranslate"><span class="pre">ONNX</span></code>). If you do not resize the input image the deployed model will have default shape, so for now we will resize the image to (244, 244) and then pass it for deployment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">get_image</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>      <span class="c1"># get the PIL.Image object</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">244</span><span class="p">,</span> <span class="mi">244</span><span class="p">))</span>  <span class="c1"># you can skip the following shape if the shape is already correct</span>
+<span class="n">url</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
+    <span class="n">input_object</span><span class="o">=</span><span class="n">image</span><span class="p">,</span>         <span class="c1"># simply provide the input_object and watch the Terminal</span>
+    <span class="n">wait_till_deployment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># this will return the url endpoint and key</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Now wait for the deployment to complete. You can check out the dashboard till then and once deployed you will see
+the URL and API key for your model. Read more about deployment and runtimes <a class="reference external" href="nbox.model.html">here</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"url:"</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"key:"</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+<span class="c1"># load the model and use it without any difference in API</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nbox</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Use the model without being concerned with the API hits, as <code class="docutils literal notranslate"><span class="pre">nbox</span></code> handles it internally. So, you can see how easy it is to load a model, test it and deploy it in minutes. You can head over to technical documentation for further reading on this.</p>
 </section>
 
         </article>
@@ -223,8 +271,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="nbox.cli.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">nbox.cli module</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="quick.0.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Quickstart</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">

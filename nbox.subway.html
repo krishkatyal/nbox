@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators" href="nbox.operator.html" /><link rel="prev" title="Operators Library" href="nbox.nbxlib.ops.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Pushing Understanding" href="nbox.framework.html" /><link rel="prev" title="nbox.framework.ml" href="nbox.framework.ml.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.03.04"/>
-        <title>NBX-Models - nbox 0.9.3 documentation</title>
+        <title>Subways - nbox 0.9.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -160,16 +160,16 @@
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Commonly used APIs</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">NBX-Models</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nbox.model.html">NBX-Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.operator.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.jobs.html">NBX-Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.instance.html">NBX-Build Instances</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.framework.ml.html">nbox.framework.ml</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="nbox.subway.html">Subways</a></li>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Subways</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="nbox.framework.html">Pushing Understanding</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="nbox.framework.ml.html">nbox.framework.ml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nbox.framework.on_ml.html">ML Frameworks</a></li>
@@ -214,8 +214,82 @@
           </label>
         </div>
         <article role="main">
-          <section id="nbx-models">
-<h1>NBX-Models<a class="headerlink" href="#nbx-models" title="Permalink to this headline">#</a></h1>
+          <section id="module-nbox.subway">
+<span id="subways"></span><h1>Subways<a class="headerlink" href="#module-nbox.subway" title="Permalink to this headline">#</a></h1>
+<p>These function are meant to make jobs easier and contain the code for what I am calling
+<code class="docutils literal notranslate"><span class="pre">Subway</span></code>, which converts any OpenAPI spec into an RPC-like interface. At the end of the
+day, each API call is really nothing but a functional call with added steps like
+serialisation and networking combined. This kind of added complexity can:</p>
+<ol class="arabic simple">
+<li><p>Make code look really ugly, think try-catches and <code class="docutils literal notranslate"><span class="pre">r.raise_for_request()</span></code></p></li>
+<li><p>Easy to develop because information has to be packaged as different parts for each    type of function call (GET, POST, …). The true intent was always to pass it the    relevant information and forget about underlying details.</p></li>
+<li><p>API endpoints are just strings and it’s easy to have a typo in the URL. When the    <a href="#id1"><span class="problematic" id="id2">``</span></a>Subway``is loaded with the OpenAPI spec, it will disallow incorrect URLs. while    managing the parameters correctly.</p></li>
+<li><p>A more pythonic way of programming where you can use the dot notation.</p></li>
+</ol>
+<p>Based os these ideas there are three types of subways:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Subway</span></code>: Does not load OpenAPI spec and will blindly call the API, avoid this</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sub30</span></code>: Built for OpenAPI v3.0.0, this becomes <code class="docutils literal notranslate"><span class="pre">nbox_ws_v1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SpecSubway</span></code>: This is used with the FastAPI’s OpenAPI spec, this is used in systems    that use FastAPI (eg. Compute Server)</p></li>
+</ol>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.subway.Subway">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.subway.</span></span><span class="sig-name descname"><span class="pre">Subway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#Subway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.Subway" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple code that allows extending things by <code class="docutils literal notranslate"><span class="pre">.attr.ing</span></code> them</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.subway.filter_templates">
+<span class="sig-prename descclassname"><span class="pre">nbox.subway.</span></span><span class="sig-name descname"><span class="pre">filter_templates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#filter_templates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.filter_templates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.subway.Sub30">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.subway.</span></span><span class="sig-name descname"><span class="pre">Sub30</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_api</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_session</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#Sub30"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.Sub30" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Like Subway but built for Nimblebox Webserver APIs.</p>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Sub30</span><span class="p">(</span>
+  <span class="n">_url</span> <span class="o">=</span> <span class="s2">"https://my-web.site/"</span><span class="p">,</span>
+  <span class="n">_session</span> <span class="o">=</span> <span class="n">nbox_session</span><span class="p">,</span>
+  <span class="n">_api</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">fetch</span><span class="p">(</span><span class="s2">"https://my-web.site/openapi.json"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_url</strong> (<em>str</em>) – the base url of the API</p></li>
+<li><p><strong>_api</strong> (<em>dict</em>) – OpenAPI json dict</p></li>
+<li><p><strong>_session</strong> (<em>requests.Session</em>) – Session object to use for requests</p></li>
+<li><p><strong>prefix</strong> (<em>str</em><em>, </em><em>optional</em>) – This is internal, do not use it explicitly.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.subway.Sub30.u">
+<span class="sig-name descname"><span class="pre">u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#Sub30.u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.Sub30.u" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.subway.SpecSubway">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.subway.</span></span><span class="sig-name descname"><span class="pre">SpecSubway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_SpecSubway__name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#SpecSubway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.SpecSubway" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Subway but for fastAPI OpenAPI spec.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.subway.SpecSubway.from_openapi">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_openapi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">openapi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#SpecSubway.from_openapi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.SpecSubway.from_openapi" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.subway.NboxModelSubway">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.subway.</span></span><span class="sig-name descname"><span class="pre">NboxModelSubway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#NboxModelSubway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.NboxModelSubway" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Vanilla nbox-serving fastapi server</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.subway.NboxModelSubway.pattern">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/subway.html#NboxModelSubway.pattern"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.subway.NboxModelSubway.pattern" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
 </section>
 
         </article>
@@ -223,23 +297,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="nbox.operator.html">
+          <a class="next-page" href="nbox.framework.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Operators</div>
+                <div class="title">Pushing Understanding</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="nbox.nbxlib.ops.html">
+          <a class="prev-page" href="nbox.framework.ml.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Operators Library</div>
+                <div class="title">nbox.framework.ml</div>
                 
               </div>
             </a>

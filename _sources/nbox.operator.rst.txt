@@ -1,7 +1,7 @@
-init module
-===========
+Operators
+=========
 
-.. automodule:: nbox.init
+.. automodule:: nbox.operator
    :members:
    :undoc-members:
    :show-inheritance:
