@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
-        <title>init module - nbox 0.9.7 documentation</title>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>init module - nbox 0.9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +36,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -123,7 +121,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +144,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -216,8 +214,39 @@
           </label>
         </div>
         <article role="main">
-          <section id="init-module">
-<h1>init module<a class="headerlink" href="#init-module" title="Permalink to this headline">#</a></h1>
+          <section id="module-nbox.init">
+<span id="init-module"></span><h1>init module<a class="headerlink" href="#module-nbox.init" title="Permalink to this headline">#</a></h1>
+<p>This file loads first and is responsible for setting up all the global networking items.</p>
+<blockquote>
+<div><p>Build systems are an extremely important detail of any software project. When they work,
+they can feel like magic: you execute a command, and after a series of potentially
+complicated steps, a working binary (or other artifact) is produced! When they don’t work,
+they can feel like confusing, non-transparent roadblocks that you wish didn’t exist. This
+is typical for any powerful tool: magic or a headache depending on the day and the task.</p>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.init.get_stub">
+<span class="sig-prename descclassname"><span class="pre">nbox.init.</span></span><span class="sig-name descname"><span class="pre">get_stub</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">nbox.hyperloop.nbox_ws_pb2_grpc.WSJobServiceStub</span></span></span><a class="reference internal" href="_modules/nbox/init.html#get_stub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.init.get_stub" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a gRPC stub with the NBX Webserver, this will initialise <code class="docutils literal notranslate"><span class="pre">nbox_grpc_stub</span></code>
+object which is globally accesible as <code class="docutils literal notranslate"><span class="pre">nbox.nbox_grpc_stub</span></code>. If you find yourself
+using this function, you might want to reconsider your design.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.init.create_webserver_subway">
+<span class="sig-prename descclassname"><span class="pre">nbox.init.</span></span><span class="sig-name descname"><span class="pre">create_webserver_subway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'v1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">requests.sessions.Session</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="nbox.subway.html#nbox.subway.Sub30" title="nbox.subway.Sub30"><span class="pre">nbox.subway.Sub30</span></a></span></span><a class="reference internal" href="_modules/nbox/init.html#create_webserver_subway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.init.create_webserver_subway" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a Subway object for the NBX Webserver. This is a wrapper around the
+OpenAPI spec plublished by NBX Webserver. It loads the JSON object in <code class="docutils literal notranslate"><span class="pre">Sub30</span></code>
+which allows accesing REST APIs with python “.” (dot) notation. If you find yourself
+using this function, you might want to reconsider your design.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Subway object for the NBX Webserver.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="nbox.subway.html#nbox.subway.Sub30" title="nbox.subway.Sub30">Sub30</a></p>
+</dd>
+</dl>
+</dd></dl>
 </section>
 
         </article>

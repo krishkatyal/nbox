@@ -1,0 +1,10 @@
+.DS_Store
+__dark_magic/
+__ignore/
+assets/
+docs/
+ex_jobs/
+example_jobs/
+nbox/
+notebooks/
+tests/

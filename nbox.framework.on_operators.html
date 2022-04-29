@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox RPC support" href="nbox.messages.html" /><link rel="prev" title="ML Frameworks" href="nbox.framework.on_ml.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
-        <title>Framework on Operators - nbox 0.9.7 documentation</title>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>Framework on Operators - nbox 0.9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +36,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -123,7 +121,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +144,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -216,8 +214,78 @@
           </label>
         </div>
         <article role="main">
-          <section id="framework-on-operators">
-<h1>Framework on Operators<a class="headerlink" href="#framework-on-operators" title="Permalink to this headline">#</a></h1>
+          <section id="module-nbox.framework.on_operators">
+<span id="framework-on-operators"></span><h1>Framework on Operators<a class="headerlink" href="#module-nbox.framework.on_operators" title="Permalink to this headline">#</a></h1>
+<p>Though initially this code just like the <a class="reference external" href="nbox.framework.on_ml.html">on_ml.py</a>
+code was build separately for each different package that we supported and that
+led to just some really duct taping and hacking around that made it inefficient
+to scale. The lesson is that premature attempts to scale are as bad as not being
+able to scale. On that end eventually this file will be broken apart by packages
+but hopefully it is in a way better. My depth limit = 2.</p>
+<p>Read the code for best understanding.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.AirflowMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.framework.on_operators.</span></span><span class="sig-name descname"><span class="pre">AirflowMixin</span></span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#AirflowMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.AirflowMixin" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.AirflowMixin.to_airflow_operator">
+<span class="sig-name descname"><span class="pre">to_airflow_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.on_operators.AirflowMixin.to_airflow_operator" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.AirflowMixin.from_airflow_operator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_airflow_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.on_operators.AirflowMixin.from_airflow_operator" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.AirflowMixin.to_airflow_dag">
+<span class="sig-name descname"><span class="pre">to_airflow_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.on_operators.AirflowMixin.to_airflow_dag" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.AirflowMixin.from_airflow_dag">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_airflow_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.on_operators.AirflowMixin.from_airflow_dag" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.PrefectMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.framework.on_operators.</span></span><span class="sig-name descname"><span class="pre">PrefectMixin</span></span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#PrefectMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.PrefectMixin" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.PrefectMixin.from_prefect_flow">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_prefect_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#PrefectMixin.from_prefect_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.PrefectMixin.from_prefect_flow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.PrefectMixin.to_prefect_flow">
+<span class="sig-name descname"><span class="pre">to_prefect_flow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#PrefectMixin.to_prefect_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.PrefectMixin.to_prefect_flow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.PrefectMixin.from_prefect_task">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_prefect_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#PrefectMixin.from_prefect_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.PrefectMixin.from_prefect_task" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.PrefectMixin.to_prefect_task">
+<span class="sig-name descname"><span class="pre">to_prefect_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#PrefectMixin.to_prefect_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.PrefectMixin.to_prefect_task" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.LuigiMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.framework.on_operators.</span></span><span class="sig-name descname"><span class="pre">LuigiMixin</span></span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#LuigiMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.LuigiMixin" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.LuigiMixin.from_luigi_flow">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_luigi_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#LuigiMixin.from_luigi_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.LuigiMixin.from_luigi_flow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.LuigiMixin.to_luigi_flow">
+<span class="sig-name descname"><span class="pre">to_luigi_flow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#LuigiMixin.to_luigi_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.LuigiMixin.to_luigi_flow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.LuigiMixin.from_luigi_task">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_luigi_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#LuigiMixin.from_luigi_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.LuigiMixin.from_luigi_task" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.framework.on_operators.LuigiMixin.to_luigi_task">
+<span class="sig-name descname"><span class="pre">to_luigi_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_operators.html#LuigiMixin.to_luigi_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_operators.LuigiMixin.to_luigi_task" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
 </section>
 
         </article>
