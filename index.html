@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="quick.0.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="quick.0.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox 0.9.1 documentation</title>
+        <title>nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="#"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,7 +212,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="welcome-to-nbox-s-documentation">
+          <div class="section" id="welcome-to-nbox-s-documentation">
 <h1>Welcome to nbox’s documentation!<a class="headerlink" href="#welcome-to-nbox-s-documentation" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>Good documentation is always a work in silence.</p>
@@ -240,7 +238,7 @@ You can get it by going to Profile → Reset Password.</p>
 <p>When loading <code class="docutils literal notranslate"><span class="pre">nbox</span></code> for the first time, it will prompt you the username and password and create a secrets
 file at <code class="docutils literal notranslate"><span class="pre">~/.nbx/secrets.json</span></code>. This file then contains all the information that you don’t have to
 fetch manually again.</p>
-<section id="apis">
+<div class="section" id="apis">
 <h2>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">#</a></h2>
 <p>The objective is to make using ML 🥶. For this it is paramount that APIs be deeper, user functions be
 kept to minimum and most relavant. This documentation contains the full spec of everything, but here’s
@@ -264,8 +262,8 @@ all the APIs you need to know:</p>
 </div>
 <p>Though the underlying framework will keep on increasing we already use Protobufs, gRPC along with auto
 generating code files.</p>
-</section>
-<section id="cli">
+</div>
+<div class="section" id="cli">
 <h2>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">#</a></h2>
 <p>To provide zero differences between using CLI and packages, we use python-fire that makes CLIs using
 python objects. Example, let’s just say you want to turn off any instance</p>
@@ -276,14 +274,14 @@ python objects. Example, let’s just say you want to turn off any instance</p>
 <span class="n">nbx</span> <span class="n">build</span> <span class="o">--</span><span class="n">i</span><span class="o">=</span><span class="s2">"nbox-dev"</span> <span class="o">--</span><span class="n">workspace_id</span><span class="o">=</span><span class="s2">"99mhf3h"</span> <span class="n">stop</span>
 </pre></div>
 </div>
-<section id="ssh">
+<div class="section" id="ssh">
 <h3>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline">#</a></h3>
 <p>Or you can directly SSH into instances (Read more aout).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nbx</span> <span class="n">tunnel</span> <span class="mi">8000</span> <span class="o">--</span><span class="n">i</span><span class="o">=</span><span class="s2">"nbox-dev"</span>
 </pre></div>
 </div>
-</section>
-<section id="get">
+</div>
+<div class="section" id="get">
 <h3>GET<a class="headerlink" href="#get" title="Permalink to this headline">#</a></h3>
 <p>Or you can see the status by making GET calls from CLI along with <code class="docutils literal notranslate"><span class="pre">jq</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nbx get "workspace/99mhf3h/projects/2892" | tail -n 1 | jq
@@ -303,16 +301,15 @@ python objects. Example, let’s just say you want to turn off any instance</p>
 <p>If you want to see something be added or found bug, <a class="reference external" href="https://github.com/NimbleBoxAI/nbox/issues/new">raise an issue</a>.</p>
 <p>Hope you enjoy this.</p>
 <p><strong>Yash Bonde</strong> (NimbleBox.ai R&amp;D)</p>
-</section>
-</section>
-</section>
-<section id="index">
+</div>
+</div>
+</div>
+<div class="section" id="index">
 <h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -359,7 +356,7 @@ python objects. Example, let’s just say you want to turn off any instance</p>
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 </ul>
-</section>
+</div>
 
         </article>
       </div>

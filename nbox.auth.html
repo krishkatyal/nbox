@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Engineering behind SSH" href="nbox.sub_utils.ssh.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Engineering behind SSH" href="nbox.sub_utils.ssh.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox Authentications - nbox 0.9.1 documentation</title>
+        <title>nbox Authentications - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,7 +212,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.auth">
+          <div class="section" id="module-nbox.auth">
 <span id="nbox-authentications"></span><h1>nbox Authentications<a class="headerlink" href="#module-nbox.auth" title="Permalink to this headline">#</a></h1>
 <p>This code is used to manage the authentication of the entire <code class="docutils literal notranslate"><span class="pre">nbox</span></code> package. For authentication
 it will create a <code class="docutils literal notranslate"><span class="pre">.nbx</span></code> in the user’s home directory (<code class="docutils literal notranslate"><span class="pre">~/.nbx</span></code>, in case of linux) and store
@@ -282,26 +280,24 @@ please raise an issue on Github.</p>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.auth.NBXClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">NBXClient</span></span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">NBXClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nbx_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://app.nimblebox.ai'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.auth.NBXClient.get_access_token">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nbx_home_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.get_access_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.get_access_token" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.auth.NBXClient.create_secret_file">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_secret_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbx_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.create_secret_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.create_secret_file" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<p>We try to find the values secrets file in the <code class="docutils literal notranslate"><span class="pre">~/.nbx/secrets.json</span></code>, if not
+found, we ask the user for the email and direct them to browser.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.auth.NBXClient.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.get" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.NBXClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.put" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.auth.init_secret">
 <span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">init_secret</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#init_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.init_secret" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
-</section>
+</div>
 
         </article>
       </div>

@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox.load - nbox 0.9.7 documentation</title>
+        <title>QuickStart with NBX-Jobs - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -131,7 +131,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -206,42 +206,78 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <div class="section" id="module-nbox.load">
-<span id="nbox-load"></span><h1>nbox.load<a class="headerlink" href="#module-nbox.load" title="Permalink to this headline">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.load.remove_kwargs">
-<span class="sig-prename descclassname"><span class="pre">nbox.load.</span></span><span class="sig-name descname"><span class="pre">remove_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/load.html#remove_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.load.remove_kwargs" title="Permalink to this definition">#</a></dt>
-<dd><p>take in the <code class="docutils literal notranslate"><span class="pre">model_fn</span></code> and only keep variables from kwargs that can be consumed</p>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.load.load">
-<span class="sig-prename descclassname"><span class="pre">nbox.load.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">loader_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="nbox.model.html#nbox.model.Model" title="nbox.model.Model"><span class="pre">nbox.model.Model</span></a></span></span><a class="reference internal" href="_modules/nbox/load.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.load.load" title="Permalink to this definition">#</a></dt>
-<dd><p>This function loads the nbox.Model object from the pretrained models index.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>str</em>) – the index of the model to load, you can check with <code class="docutils literal notranslate"><span class="pre">nbox.load.PRETRAINED_MODELS</span></code></p></li>
-<li><p><strong>pre</strong> (<em>str</em>) – the preprocessing to apply to the model, it should be callable and should return a dict</p></li>
-<li><p><strong>post</strong> (<em>str</em>) – the postprocessing to apply to the model, it should be callable and should return anything
-you want</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em>) – if True, print out the model name and the model parameters</p></li>
-<li><p><strong>loader_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – keyword arguments to be passed to the loader function.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the loaded model object</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>nbox.Model</p>
-</dd>
-</dl>
-</dd></dl>
+          <div class="section" id="quickstart-with-nbx-jobs">
+<h1>QuickStart with NBX-Jobs<a class="headerlink" href="#quickstart-with-nbx-jobs" title="Permalink to this headline">#</a></h1>
+<p>How do create a new job? Go to your terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m nbox <span class="nb">jobs</span> new --help
+
+<span class="c1"># signature</span>
+
+nbox <span class="nb">jobs</span> new PROJECT_NAME --workspace_id<span class="o">=</span>WORKSPACE_ID
+</pre></div>
+</div>
+<p>So if I am putting my job in production I will call the command above. <code class="docutils literal notranslate"><span class="pre">nbox</span></code> will ask you a couple of questions to reduce your efforts and making it more interactive.
+Finally, it will create a folder <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> with following files in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./
+├── README.md
+├── exe.py
+├── nbx_user.py
+└── requirements.txt
+</pre></div>
+</div>
+<p>You can add all your dependencies in the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file which will be our source of truth. Open <code class="docutils literal notranslate"><span class="pre">nbx_user.py</span></code> and populate the function <code class="docutils literal notranslate"><span class="pre">get_op</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_op</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Operator</span><span class="p">:</span>
+<span class="sd">"""Function to initialising your job, it might require passing a bunch of arguments.</span>
+<span class="sd">Use this function to get the operator by manually defining things here"""</span>
+<span class="c1"># from nbox.nbxlib.ops import Magic</span>
+<span class="c1"># return Magic()</span>
+
+<span class="c1"># &gt;&gt;&gt; YOUR CODE HERE &lt;&lt;&lt; #</span>
+<span class="k">return</span>
+</pre></div>
+</div>
+<p>If you are unsure, you can just uncomment the first two lines and return the initialised <code class="docutils literal notranslate"><span class="pre">Magic</span></code> operator. Go to the folder and run the following commands to deploy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> PROJECT_NAME/      <span class="c1"># go the folder</span>
+python3 exe.py deploy <span class="c1"># put your job on production.</span>
+</pre></div>
+</div>
+<div class="section" id="creating-custom-jobs">
+<h2>Creating Custom Jobs<a class="headerlink" href="#creating-custom-jobs" title="Permalink to this headline">#</a></h2>
+<p>In NimbleBox, you create jobs using a singular class called <code class="docutils literal notranslate"><span class="pre">Operators</span></code>, there is nothing else. You can chain them, recurse through them, call them inside each
+other or any other code structure that you prefer. You can find documentation <a class="reference external" href="nbox_operator.html">here</a>, fundamentally, you need to do two things, define
+the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function and <code class="docutils literal notranslate"><span class="pre">forward</span></code> function, just like how you do in case of pytorch.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbox</span> <span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="k">class</span> <span class="nc">SomeTask</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># &gt;&gt;&gt; YOUR CODE HERE &lt;&lt;&lt; #</span>
+    <span class="c1"># you would want to perform actions like creating of folders, etc.</span>
+    <span class="k">pass</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">);</span>
+    <span class="c1"># &gt;&gt;&gt; YOUR CODE HERE &lt;&lt;&lt; #</span>
+    <span class="c1"># you would want to perform actions like downloading of data, etc.</span>
+    <span class="k">pass</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">SomeTask</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="faqs">
+<h2>FAQs<a class="headerlink" href="#faqs" title="Permalink to this headline">#</a></h2>
+<p>For FAQs regarding the platform click <a class="reference external" href="https://docs.v2.nimblebox.ai/developer-tools/jobs/get-started">here</a>.</p>
+<p><strong>How to create a new job?</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">nbox</span> <span class="pre">jobs</span> <span class="pre">new</span> <span class="pre">--help</span></code></p>
+<p><strong>How do I transfer file to an object store like S3?</strong></p>
+<p>Currently, you can write your own operator or reuse the existing <code class="docutils literal notranslate"><span class="pre">boto3</span></code> code that you have. You don’t have to learn the intricacies
+of our system, you write code the way you like it.</p>
+</div>
 </div>
 
         </article>
@@ -271,8 +307,28 @@ you want</p></li>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">QuickStart with NBX-Jobs</a><ul>
+<li><a class="reference internal" href="#creating-custom-jobs">Creating Custom Jobs</a></li>
+<li><a class="reference internal" href="#faqs">FAQs</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

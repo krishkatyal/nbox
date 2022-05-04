@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators" href="nbox.operator.html" /><link rel="prev" title="Operators Library" href="nbox.nbxlib.ops.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators" href="nbox.operator.html" /><link rel="prev" title="Operators Library" href="nbox.nbxlib.ops.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>NBX-Models - nbox 0.9.1 documentation</title>
+        <title>NBX-Models - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,13 +212,13 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.model">
+          <div class="section" id="module-nbox.model">
 <span id="nbx-models"></span><h1>NBX-Models<a class="headerlink" href="#module-nbox.model" title="Permalink to this headline">#</a></h1>
 <p>This file has the code to run <code class="docutils literal notranslate"><span class="pre">nbox.Model</span></code> which is top of the stack class. It can load
 any arbitrary model and run it, deploy it (if possible to export), train it (WIP). It has gone
 through it’s fare share of refactoring and is now much simpler, in terms of functions while
 providing very abstract value.</p>
-<section id="tl-dr">
+<div class="section" id="tl-dr">
 <h2>tl;dr<a class="headerlink" href="#tl-dr" title="Permalink to this headline">#</a></h2>
 <p>Underneath this system uses a simple and effective strategy. All the supported methods for
 all the frameworks (tensoflow, pytorch, etc) are in a registery, whenever the user sends
@@ -228,8 +226,8 @@ any model, it is matched and all functions for that framework (eg. <code class="
 are loaded. This then provides first class support eg. <code class="docutils literal notranslate"><span class="pre">delay_forecaster.torch_to_onnx()</span></code>,
 combined with the protobuf style message stub system this provides all configurations to
 user and leaves us incharge of simply executing it.</p>
-</section>
-<section id="story-mode">
+</div>
+<div class="section" id="story-mode">
 <h2>Story Mode<a class="headerlink" href="#story-mode" title="Permalink to this headline">#</a></h2>
 <p>Let’s just say your organisation is working on project for predicting “User Fraud Prevention”,
 and you already have a working baseline in scikit learn. You have already trained the model
@@ -388,8 +386,12 @@ So should we really add this, is the question!</p>
 <p>EXPERIMENTAL: FEATURES MIGHT BREAK</p>
 </dd></dl>
 </dd></dl>
-</section>
-</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.model.magic_model">
+<span class="sig-prename descclassname"><span class="pre">nbox.model.</span></span><span class="sig-name descname"><span class="pre">magic_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#magic_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.magic_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</div>
+</div>
 
         </article>
       </div>

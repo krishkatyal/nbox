@@ -8,3 +8,5 @@ example_jobs/
 nbox/
 notebooks/
 tests/
+dist/
+.nbx

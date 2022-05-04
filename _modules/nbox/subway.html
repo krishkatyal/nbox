@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox.subway - nbox 0.9.1 documentation</title>
+        <title>nbox.subway - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -120,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -143,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -154,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -239,6 +238,7 @@
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">logger</span>
@@ -286,7 +286,7 @@
   <span class="k">return</span> <span class="n">re_temps</span></div>
 
 <div class="viewcode-block" id="Sub30"><a class="viewcode-back" href="../../nbox.subway.html#nbox.subway.Sub30">[docs]</a><span class="k">class</span> <span class="nc">Sub30</span><span class="p">:</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_url</span><span class="p">,</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_session</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s2">""</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_url</span><span class="p">,</span> <span class="n">_api</span><span class="p">,</span> <span class="n">_session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s2">""</span><span class="p">):</span>
     <span class="sd">"""Like Subway but built for Nimblebox Webserver APIs.</span>
 
 <span class="sd">    Usage:</span>
@@ -315,6 +315,14 @@
 
   <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Sub30</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Sub30.data"><a class="viewcode-back" href="../../nbox.subway.html#nbox.subway.Sub30.data">[docs]</a>  <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_url</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_api</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s2">"_url"</span><span class="p">:</span> <span class="n">_url</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_url</span><span class="p">,</span>
+      <span class="s2">"_api"</span><span class="p">:</span> <span class="n">_api</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="p">,</span>
+      <span class="s2">"_session"</span><span class="p">:</span> <span class="n">_session</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">,</span>
+      <span class="s2">"_prefix"</span><span class="p">:</span> <span class="n">prefix</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prefix</span><span class="p">,</span>
+    <span class="p">}</span></div>
 
 <div class="viewcode-block" id="Sub30.u"><a class="viewcode-back" href="../../nbox.subway.html#nbox.subway.Sub30.u">[docs]</a>  <span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span></div>

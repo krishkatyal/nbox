@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Build Instances" href="nbox.instance.html" /><link rel="prev" title="Operators" href="nbox.operator.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Build Instances" href="nbox.instance.html" /><link rel="prev" title="Operators" href="nbox.operator.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>NBX-Jobs - nbox 0.9.1 documentation</title>
+        <title>NBX-Jobs - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,9 +212,13 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.jobs">
+          <div class="section" id="module-nbox.jobs">
 <span id="nbx-jobs"></span><h1>NBX-Jobs<a class="headerlink" href="#module-nbox.jobs" title="Permalink to this headline">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">nbox.Job</span></code> is a wrapper to the APIs that’s it.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datetime.now(timezone.utc)</span></code> is incorrect, use <a class="reference external" href="https://blog.ganssle.io/articles/2019/11/utcnow.html">this</a> method.</p></li>
+</ul>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.jobs.new">
 <span class="sig-prename descclassname"><span class="pre">nbox.jobs.</span></span><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/jobs.html#new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.jobs.new" title="Permalink to this definition">#</a></dt>
@@ -272,8 +274,9 @@ else personal workspace will be used</p></li>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.jobs.Job.change_schedule">
-<span class="sig-name descname"><span class="pre">change_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nbox.network.html#nbox.network.Schedule" title="nbox.network.Schedule"><span class="pre">Schedule</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/jobs.html#Job.change_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.jobs.Job.change_schedule" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">change_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nbox.network.html#nbox.network.Schedule" title="nbox.network.Schedule"><span class="pre">Schedule</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/jobs.html#Job.change_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.jobs.Job.change_schedule" title="Permalink to this definition">#</a></dt>
+<dd><p>Change schedule this job</p>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.jobs.Job.logs">
 <span class="sig-name descname"><span class="pre">logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/jobs.html#Job.logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.jobs.Job.logs" title="Permalink to this definition">#</a></dt>
@@ -306,7 +309,7 @@ else personal workspace will be used</p></li>
 <dd><p>Resume the Job with the current schedule, if provided else simlpy sets status as ACTIVE</p>
 </dd></dl>
 </dd></dl>
-</section>
+</div>
 
         </article>
       </div>

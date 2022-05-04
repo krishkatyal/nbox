@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox.init - nbox 0.9.1 documentation</title>
+        <title>nbox.init - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -120,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="../../index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -143,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -154,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -244,14 +243,8 @@
   <span class="n">creds</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">composite_channel_credentials</span><span class="p">(</span><span class="n">ssl_creds</span><span class="p">,</span> <span class="n">token_cred</span><span class="p">)</span>
   <span class="n">channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">secure_channel</span><span class="p">(</span><span class="n">secret</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"nbx_url"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"https://"</span><span class="p">,</span> <span class="s2">"dns:/"</span><span class="p">)</span><span class="o">+</span><span class="s2">":443"</span><span class="p">,</span> <span class="n">creds</span><span class="p">)</span>
   <span class="n">stub</span> <span class="o">=</span> <span class="n">WSJobServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-  <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">6</span>
-  <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Checking connection on channel for </span><span class="si">{</span><span class="n">TIMEOUT</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
-  <span class="k">try</span><span class="p">:</span>
-    <span class="n">grpc</span><span class="o">.</span><span class="n">channel_ready_future</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">TIMEOUT</span><span class="p">)</span>
-  <span class="k">except</span> <span class="n">grpc</span><span class="o">.</span><span class="n">FutureTimeoutError</span><span class="p">:</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"gRPC server timeout, some functionality might not work"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">None</span>
-
+  <span class="n">future</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">channel_ready_future</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+  <span class="n">future</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"NBX gRPC server is ready"</span><span class="p">))</span>
   <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connected using stub: </span><span class="si">{</span><span class="n">stub</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">stub</span></div>
 

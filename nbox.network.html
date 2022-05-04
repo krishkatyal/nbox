@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>nbox Networking - nbox 0.9.1 documentation</title>
+        <title>nbox Networking - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,7 +212,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.network">
+          <div class="section" id="module-nbox.network">
 <span id="nbox-networking"></span><h1>nbox Networking<a class="headerlink" href="#module-nbox.network" title="Permalink to this headline">#</a></h1>
 <p>Network functions are gateway between NBX-Services. If you find yourself using this
 you might want to reach out to us &lt;research-at-nimblebox-dot-ai&gt;!</p>
@@ -259,7 +257,7 @@ manages the quirkyness of our backend and packs multiple steps as one function.<
 <span class="n">Schedule</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">[</span><span class="s2">"fri"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"jan"</span><span class="p">,</span> <span class="s2">"feb"</span><span class="p">])</span>
 
 <span class="c1"># 4:20 everyday starting in 2 days and runs for 3 days</span>
-<span class="n">starts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># NOTE: that time is in UTC</span>
+<span class="n">starts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># NOTE: that time is in UTC</span>
 <span class="n">Schedule</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">starts</span> <span class="o">=</span> <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span> <span class="o">=</span> <span class="n">starts</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># Every 1 hour</span>
@@ -315,7 +313,7 @@ manages the quirkyness of our backend and packs multiple steps as one function.<
 </dd>
 </dl>
 </dd></dl>
-</section>
+</div>
 
         </article>
       </div>

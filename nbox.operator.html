@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Jobs" href="nbox.jobs.html" /><link rel="prev" title="NBX-Models" href="nbox.model.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Jobs" href="nbox.jobs.html" /><link rel="prev" title="NBX-Models" href="nbox.model.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>Operators - nbox 0.9.1 documentation</title>
+        <title>Operators - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,7 +212,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.operator">
+          <div class="section" id="module-nbox.operator">
 <span id="operators"></span><h1>Operators<a class="headerlink" href="#module-nbox.operator" title="Permalink to this headline">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">Operators</span></code> is how you write NBX-Jobs. If you are familiar with pytorch, then usage is
 exactly same, for others here’s a quick recap:</p>
@@ -234,7 +232,7 @@ exactly same, for others here’s a quick recap:</p>
 </pre></div>
 </div>
 <p>If you want to use deploy <a class="reference external" href="nbox.jobs.html">nbox.Jobs</a> is a better documentation.</p>
-<section id="engineering">
+<div class="section" id="engineering">
 <h2>Engineering<a class="headerlink" href="#engineering" title="Permalink to this headline">#</a></h2>
 <p>Fundamentally operators act as a wrapper on user code, sometime abstracting away functions
 by breaking them into <code class="docutils literal notranslate"><span class="pre">__init__``s</span> <span class="pre">and</span> <span class="pre">``forward``s.</span> <span class="pre">But</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">simpler</span> <span class="pre">way</span> <span class="pre">to</span> <span class="pre">wrap</span>
@@ -247,7 +245,7 @@ certainly if we come up with that high abstraction we will refactor this:</p>
 <ol class="arabic simple">
 <li><p>tree: All operators are really treated like a tree meaning that the execution is nested    and the order of execution is determined by the order of the operators in the tree. DAGs    are fundamentally just trees with some nodes spun togeather, to execute only once.</p></li>
 <li><p>deploy, …: All the services in NBX-Jobs.</p></li>
-<li><p>get_nbx_flow: which is the static code analysis system to understand true user intent and    if possible optimise the logic.</p></li>
+<li><p>get_nbx_flow: which is the static code analysis system to understand true user intent and    if possible (and permission of the user) optimise the logic.</p></li>
 </ol>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.operator.Operator">
@@ -392,8 +390,8 @@ as well as the module itself.</p>
 </dl>
 </dd></dl>
 </dd></dl>
-</section>
-</section>
+</div>
+</div>
 
         </article>
       </div>

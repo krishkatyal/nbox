@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Models" href="nbox.model.html" /><link rel="prev" title="nbox.cli module" href="nbox.cli.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="NBX-Models" href="nbox.model.html" /><link rel="prev" title="nbox.cli module" href="nbox.cli.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>Operators Library - nbox 0.9.1 documentation</title>
+        <title>Operators Library - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Operators Library</a></li>
 </ul>
@@ -214,9 +212,83 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.nbxlib.ops">
+          <div class="section" id="module-nbox.nbxlib.ops">
 <span id="operators-library"></span><h1>Operators Library<a class="headerlink" href="#module-nbox.nbxlib.ops" title="Permalink to this headline">#</a></h1>
 <p>MIT-License code for all operators that are open sourced</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.YATW">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">YATW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#YATW"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.YATW" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nbox.operator.html#nbox.operator.Operator" title="nbox.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.operator.Operator</span></code></a></p>
+<p>Create an operator, which abstracts your code into sharable, bulding blocks which
+can then deployed on either NBX-Jobs or NBX-Deploy.</p>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span> <span class="c1"># initialisation of job happens here</span>
+
+    <span class="c1"># use prebuilt operators to define the entire process</span>
+    <span class="kn">from</span> <span class="nn">.nbxlib.ops</span> <span class="kn">import</span> <span class="n">Shell</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">download_binary</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="s2">"wget https://nbox.ai/</span><span class="si">{hash}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># keep a library of organisation wide operators</span>
+    <span class="kn">from</span> <span class="nn">.nbx_internal.operators</span> <span class="kn">import</span> <span class="n">TrainGPT</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">:</span> <span class="n">Operator</span> <span class="o">=</span> <span class="n">TrainGPT</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="c1"># pass any inputs you want at runtime</span>
+    <span class="o">...</span> <span class="c1"># execute code in any arbitrary order, free from DAGs</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">download_binary</span><span class="p">(</span><span class="nb">hash</span><span class="o">=</span><span class="s2">"my_binary"</span><span class="p">)</span> <span class="c1"># pass relevant data at runtime</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">()</span> <span class="c1"># run any operation and get full visibility on platform</span>
+
+<span class="c1"># to convert operator is</span>
+<span class="n">job</span><span class="p">:</span> <span class="n">Operator</span> <span class="o">=</span> <span class="n">MyOperator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.YATW.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#YATW.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.YATW.forward" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.init_function">
+<span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">init_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#init_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.init_function" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.Magic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">Magic</span></span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#Magic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.Magic" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nbox.operator.html#nbox.operator.Operator" title="nbox.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.operator.Operator</span></code></a></p>
+<p>Create an operator, which abstracts your code into sharable, bulding blocks which
+can then deployed on either NBX-Jobs or NBX-Deploy.</p>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyOperator</span><span class="p">(</span><span class="n">Operator</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span> <span class="c1"># initialisation of job happens here</span>
+
+    <span class="c1"># use prebuilt operators to define the entire process</span>
+    <span class="kn">from</span> <span class="nn">.nbxlib.ops</span> <span class="kn">import</span> <span class="n">Shell</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">download_binary</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="s2">"wget https://nbox.ai/</span><span class="si">{hash}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># keep a library of organisation wide operators</span>
+    <span class="kn">from</span> <span class="nn">.nbx_internal.operators</span> <span class="kn">import</span> <span class="n">TrainGPT</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">:</span> <span class="n">Operator</span> <span class="o">=</span> <span class="n">TrainGPT</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="c1"># pass any inputs you want at runtime</span>
+    <span class="o">...</span> <span class="c1"># execute code in any arbitrary order, free from DAGs</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">download_binary</span><span class="p">(</span><span class="nb">hash</span><span class="o">=</span><span class="s2">"my_binary"</span><span class="p">)</span> <span class="c1"># pass relevant data at runtime</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">train_model</span><span class="p">()</span> <span class="c1"># run any operation and get full visibility on platform</span>
+
+<span class="c1"># to convert operator is</span>
+<span class="n">job</span><span class="p">:</span> <span class="n">Operator</span> <span class="o">=</span> <span class="n">MyOperator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.Magic.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#Magic.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.Magic.forward" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.nbxlib.ops.NboxInstanceStartOperator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">NboxInstanceStartOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instances</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#NboxInstanceStartOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.NboxInstanceStartOperator" title="Permalink to this definition">#</a></dt>
@@ -297,7 +369,44 @@
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#Notify.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.Notify.forward" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 </dd></dl>
-</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.StepOp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">StepOp</span></span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#StepOp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.StepOp" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nbox.operator.html#nbox.operator.Operator" title="nbox.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.operator.Operator</span></code></a></p>
+<p>Convinience operator, add a no output operator using <code class="docutils literal notranslate"><span class="pre">.add_step</span></code> and don’t write forward</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>class InstallPython(StepOp)</dt><dd><dl class="simple">
+<dt>def __init__(self, version: str = “3.9):</dt><dd><p>self.add_step(ShellCommand(f”chmod +x ./scripts/python{version}_install.sh”))
+self.add_step(ShellCommand(f”./scripts/python{version}_install.sh”))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>install_python = InstallPython() # init op
+install_python() # call it without defining the forward function</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.StepOp.add_step">
+<span class="sig-name descname"><span class="pre">add_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nbox.operator.html#nbox.operator.Operator" title="nbox.operator.Operator"><span class="pre">nbox.operator.Operator</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#StepOp.add_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.StepOp.add_step" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.StepOp.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#StepOp.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.StepOp.forward" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.S3Operator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.nbxlib.ops.</span></span><span class="sig-name descname"><span class="pre">S3Operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'upload'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#S3Operator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.S3Operator" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nbox.operator.html#nbox.operator.Operator" title="nbox.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.operator.Operator</span></code></a></p>
+<p>Upload or download a file from S3</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.nbxlib.ops.S3Operator.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/nbxlib/ops.html#S3Operator.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.nbxlib.ops.S3Operator.forward" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</div>
 
         </article>
       </div>

@@ -2,11 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox Authentications" href="nbox.auth.html" /><link rel="prev" title="nbox RPC support" href="nbox.messages.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox Authentications" href="nbox.auth.html" /><link rel="prev" title="nbox RPC support" href="nbox.messages.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>Engineering behind SSH - nbox 0.9.1 documentation</title>
+        <title>Engineering behind SSH - nbox 0.9.7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +120,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -144,7 +143,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -155,7 +154,6 @@
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick.0.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick.deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">nbox.cli module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.nbxlib.ops.html">Operators Library</a></li>
 </ul>
@@ -214,9 +212,22 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.sub_utils.ssh">
+          <div class="section" id="module-nbox.sub_utils.ssh">
 <span id="engineering-behind-ssh"></span><h1>Engineering behind SSH<a class="headerlink" href="#module-nbox.sub_utils.ssh" title="Permalink to this headline">#</a></h1>
-<p>This file provides support for the SSH tunneling into NBX-Build Instances.</p>
+<p>Creates a socket tunnel between users localhost to server called RSockServer (Reverse Socket Server) .
+Usage:</p>
+<blockquote>
+<div><p>client-tunnel.py &lt;client_port&gt;:&lt;instance_name&gt;:&lt;instance_port&gt; &lt;auth&gt;</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Takes in the following arguments:</dt><dd><ul class="simple">
+<li><p>client_port: The port that the user can connect to.</p></li>
+<li><p>instance_name: The name of the instance that the user wants to connect to.</p></li>
+<li><p>instance_port: The port that the instance is listening on.</p></li>
+<li><p>auth: The authentication token that the user has to provide to connect to the RSockServer.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.FileLogger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">FileLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#FileLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.FileLogger" title="Permalink to this definition">#</a></dt>
@@ -228,21 +239,21 @@
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.RSockClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">RSockClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_socket</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nbox.sub_utils.ssh.FileLogger" title="nbox.sub_utils.ssh.FileLogger"><span class="pre">nbox.sub_utils.ssh.FileLogger</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#RSockClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.RSockClient" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">RSockClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_socket</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#RSockClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.RSockClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a RSockClient. It handels the client socket where client is the user application trying to connect to “client_port”
 Connects to RSockServer listening on localhost:886.
 RSockServer recieves instructions as a string and sends back a response.
 RSockServer requires following steps to setup
-First, authentication:</p>
+First,</p>
 <blockquote>
-<div><ul class="simple">
+<div><dl>
+<dt>Authentication:</dt><dd><ul class="simple">
 <li><p>Authentication happens by sending
 <cite>“AUTH~{AUTH_TOKEN}”</cite></p></li>
 <li><p>AUTH_TOKEN is not defined and is default to ‘password’</p></li>
 </ul>
-</div></blockquote>
-<dl>
+</dd>
 <dt>Seting config:</dt><dd><ul class="simple">
 <li><p>you can set config by sending
 <cite>“SET_CONFIG~{instance}~{instance_port}”</cite></p></li>
@@ -250,10 +261,18 @@ First, authentication:</p>
 <li><p>“instance_port” - What port users wants to connect to.</p></li>
 </ul>
 </dd>
-<dt>Connect:</dt><dd><ul>
+<dt>Connect:</dt><dd><ul class="simple">
 <li><p>This Starts the main loop which
 1. Listen on client_port
-2. On connection,</p>
+2. On connection,</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>On connection,</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple" start="2">
+<li><p>On connection,</p></li>
+</ol>
 <blockquote>
 <div><ol class="loweralpha simple">
 <li><p>Send AUTH</p></li>
@@ -262,8 +281,7 @@ First, authentication:</p>
 <li><p>If CONNECT is successful, start io_copy</p></li>
 </ol>
 </div></blockquote>
-</li>
-</ul>
+</div></blockquote>
 </dd>
 <dt>IO_COPY:</dt><dd><ul class="simple">
 <li><p>This is the main loop that handles the data transfer between client and server. This is done by creating a new thread for each connection.</p></li>
@@ -272,12 +290,17 @@ First, authentication:</p>
 </ul>
 </dd>
 </dl>
+</div></blockquote>
 <p>Initializes the client.
 :param client_socket: The socket that the client is connected to.
 :param instance: The instance that the client wants to connect to.
 :param instance_port: The port that the instance is listening on.
 :param auth: The authentication token that the client has to provide to connect to the RSockServer.
 :param secure: Whether or not the client is using SSL.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.sub_utils.ssh.RSockClient.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#RSockClient.log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.RSockClient.log" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.RSockClient.connect_to_rsock_server">
 <span class="sig-name descname"><span class="pre">connect_to_rsock_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#RSockClient.connect_to_rsock_server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.RSockClient.connect_to_rsock_server" title="Permalink to this definition">#</a></dt>
@@ -309,15 +332,27 @@ Sends <cite>“CONNECT”</cite> to RSockServer.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.create_connection">
-<span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">create_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nbox.sub_utils.ssh.FileLogger" title="nbox.sub_utils.ssh.FileLogger"><span class="pre">nbox.sub_utils.ssh.FileLogger</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">listen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#create_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.create_connection" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">create_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localport</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notsecure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#create_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.create_connection" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>localport</strong> – The port that the client will be listening on.</p></li>
+<li><p><strong>user</strong> – The user that the client will be connecting as.</p></li>
+<li><p><strong>subdomain</strong> – The subdomain that the client will be connecting to.</p></li>
+<li><p><strong>port</strong> – The port that the server will be listening on.</p></li>
+<li><p><strong>auth</strong> – The build auth token that the client will be using.</p></li>
+<li><p><strong>notsecure</strong> – Whether or not to use SSL.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.port_in_use">
 <span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">port_in_use</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#port_in_use"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.port_in_use" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.sub_utils.ssh.tunnel">
-<span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">tunnel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ssh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">apps_to_ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#tunnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.tunnel" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">nbox.sub_utils.ssh.</span></span><span class="sig-name descname"><span class="pre">tunnel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ssh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">apps_to_ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/sub_utils/ssh.html#tunnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.sub_utils.ssh.tunnel" title="Permalink to this definition">#</a></dt>
 <dd><p>the nbox way to SSH into your instance, by default <code class="docutils literal notranslate"><span class="pre">"jupyter":</span> <span class="pre">8888</span> <span class="pre">and</span> <span class="pre">"mlflow":</span> <span class="pre">5000</span></code></p>
 <dl class="simple">
 <dt>Usage:</dt><dd><p>tunn.py 8000 notebook:8000 2000:8001 -i “nbox-dev”</p>
@@ -335,7 +370,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">jupyte
 </dd>
 </dl>
 </dd></dl>
-</section>
+</div>
 
         </article>
       </div>
