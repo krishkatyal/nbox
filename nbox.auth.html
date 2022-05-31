@@ -2,14 +2,13 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Engineering behind SSH" href="nbox.sub_utils.ssh.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Engineering behind SSH" href="nbox.sub_utils.ssh.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>nbox Authentications - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +35,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -215,9 +212,92 @@
           </label>
         </div>
         <article role="main">
-          <section id="nbox-authentications">
-<h1>nbox Authentications<a class="headerlink" href="#nbox-authentications" title="Permalink to this headline">#</a></h1>
-</section>
+          <div class="section" id="module-nbox.auth">
+<span id="nbox-authentications"></span><h1>nbox Authentications<a class="headerlink" href="#module-nbox.auth" title="Permalink to this headline">#</a></h1>
+<p>This code is used to manage the authentication of the entire <code class="docutils literal notranslate"><span class="pre">nbox</span></code> package. For authentication
+it will create a <code class="docutils literal notranslate"><span class="pre">.nbx</span></code> in the user’s home directory (<code class="docutils literal notranslate"><span class="pre">~/.nbx</span></code>, in case of linux) and store
+a file called <code class="docutils literal notranslate"><span class="pre">secrets.json</span></code>. This folder will also contain more information and files that
+are used elsewhere as well ex. files generated when takling to any instance.</p>
+<p>We have also provided simple built in methods to connect to your cloud provider service as a part
+of BYOC (bring your own cloud), they are still work on progress, of you are interested in them,
+please raise an issue on Github.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.AWSClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">AWSClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#AWSClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.AWSClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.AWSClient.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'s3'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">boto_config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#AWSClient.get_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.AWSClient.get_client" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the client object for the given service</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>service_name</strong> (<em>str</em>) – _description_. Defaults to “s3”.</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.GCPClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">GCPClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#GCPClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.GCPClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.GCPClient.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'storage'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">gcp_config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#GCPClient.get_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.GCPClient.get_client" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the client object for the given service</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>service_name</strong> (<em>str</em>) – GCP service name</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.AzureClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">AzureClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#AzureClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.AzureClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.AzureClient.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blob'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">azure_config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#AzureClient.get_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.AzureClient.get_client" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.OCIClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">OCIClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#OCIClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.OCIClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.OCIClient.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object_storage'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">oci_config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#OCIClient.get_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.OCIClient.get_client" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.DOClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">DOClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#DOClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.DOClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.DOClient.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object_storage'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">oci_config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#DOClient.get_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.DOClient.get_client" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.auth.NBXClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">NBXClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nbx_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://app.nimblebox.ai'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>We try to find the values secrets file in the <code class="docutils literal notranslate"><span class="pre">~/.nbx/secrets.json</span></code>, if not
+found, we ask the user for the email and direct them to browser.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.NBXClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.get" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.auth.NBXClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#NBXClient.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.NBXClient.put" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.auth.init_secret">
+<span class="sig-prename descclassname"><span class="pre">nbox.auth.</span></span><span class="sig-name descname"><span class="pre">init_secret</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/auth.html#init_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.auth.init_secret" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</div>
 
         </article>
       </div>

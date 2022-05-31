@@ -2,14 +2,13 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox.framework.ml" href="nbox.framework.ml.html" /><link rel="prev" title="NBX-Jobs" href="nbox.jobs.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox.framework.ml" href="nbox.framework.ml.html" /><link rel="prev" title="NBX-Jobs" href="nbox.jobs.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>NBX-Build Instances - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +35,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -215,9 +212,124 @@
           </label>
         </div>
         <article role="main">
-          <section id="nbx-build-instances">
-<h1>NBX-Build Instances<a class="headerlink" href="#nbx-build-instances" title="Permalink to this headline">#</a></h1>
-</section>
+          <div class="section" id="module-nbox.instance">
+<span id="nbx-build-instances"></span><h1>NBX-Build Instances<a class="headerlink" href="#module-nbox.instance" title="Permalink to this headline">#</a></h1>
+<p>NBX-Build Instances are APIs to your machines. These APIs can be used to change state of
+the machine (start, stop, etc.), can be used to transfer files to and from the machine
+and to an extent running and managing programs (WIP).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.instance.print_status">
+<span class="sig-prename descclassname"><span class="pre">nbox.instance.</span></span><span class="sig-name descname"><span class="pre">print_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#print_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.print_status" title="Permalink to this definition">#</a></dt>
+<dd><p>Print complete status of NBX-Build instances. If <code class="docutils literal notranslate"><span class="pre">workspace_id</span></code> is not provided
+personal workspace will be used. Used in CLI</p>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.instance.Instance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.instance.</span></span><span class="sig-name descname"><span class="pre">Instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cs_endpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'server'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>NBX-Build Instance class manages the both individual instance, but provides
+webserver functionality using <code class="docutils literal notranslate"><span class="pre">nbox_ws_v1</span></code>, such as starting and stopping,
+deletion and more.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<em>str</em>) – name or <code class="docutils literal notranslate"><span class="pre">project_id</span></code> of the instance</p></li>
+<li><p><strong>workspace_id</strong> (<em>int</em><em>, </em><em>optional</em>) – id of the workspace to use, if not provided
+personal workspace will be used.</p></li>
+<li><p><strong>cs_endpoint</strong> (<em>str</em><em>, </em><em>optional</em>) – endpoint to use for the webserver, this will connect
+to the custom ports functionality of the instance. Defaults to <code class="docutils literal notranslate"><span class="pre">server</span></code>,</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nbox.instance.Instance.useful_keys">
+<span class="sig-name descname"><span class="pre">useful_keys</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['project_id',</span> <span class="pre">'project_name',</span> <span class="pre">'size_used',</span> <span class="pre">'size',</span> <span class="pre">'state']</span></em><a class="headerlink" href="#nbox.instance.Instance.useful_keys" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.status">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.instance.Instance.status" title="Permalink to this definition">#</a></dt>
+<dd><p>Print complete status of NBX-Build instances. If <code class="docutils literal notranslate"><span class="pre">workspace_id</span></code> is not provided
+personal workspace will be used. Used in CLI</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.new">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blank'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#nbox.instance.Instance" title="nbox.instance.Instance"><span class="pre">nbox.instance.Instance</span></a></span></span><a class="reference internal" href="_modules/nbox/instance.html#Instance.new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.new" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.is_running">
+<span class="sig-name descname"><span class="pre">is_running</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/nbox/instance.html#Instance.is_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.is_running" title="Permalink to this definition">#</a></dt>
+<dd><p>Check if the instance is running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the instance is running, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.refresh" title="Permalink to this definition">#</a></dt>
+<dd><p>Update the data, get latest state</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'p100'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpu_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_shutdown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dedicated_hw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'asia-south-1'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_ssh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.start" title="Permalink to this definition">#</a></dt>
+<dd><p>Start instance if not already running and loads APIs from the compute server.</p>
+<p>Actual start is implemented in <cite>_start</cite> method, this combines other things</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpu</strong> (<em>int</em><em>, </em><em>optional</em>) – CPU count should be one of <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">8]</span></code></p></li>
+<li><p><strong>gpu</strong> (<em>str</em><em>, </em><em>optional</em>) – GPU name should be one of <code class="docutils literal notranslate"><span class="pre">["t5",</span> <span class="pre">"p100",</span> <span class="pre">"v100",</span> <span class="pre">"k80"]</span></code></p></li>
+<li><p><strong>gpu_count</strong> (<em>int</em><em>, </em><em>optional</em>) – When zero, cpu-only instance is started</p></li>
+<li><p><strong>auto_shutdown</strong> (<em>int</em><em>, </em><em>optional</em>) – No autoshutdown if zero, defaults to 6.</p></li>
+<li><p><strong>dedicated_hw</strong> (<em>bool</em><em>, </em><em>optional</em>) – If not spot/pre-emptible like machines used</p></li>
+<li><p><strong>zone</strong> (<em>str</em><em>, </em><em>optional</em>) – GCP cloud regions, defaults to “asia-south-1”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.stop" title="Permalink to this definition">#</a></dt>
+<dd><p>Stop Instance</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.delete" title="Permalink to this definition">#</a></dt>
+<dd><p>With great power comes great responsibility.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.ls">
+<span class="sig-name descname"><span class="pre">ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6174</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.ls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.ls" title="Permalink to this definition">#</a></dt>
+<dd><p>List files in a directory relative to ‘/home/ubuntu/project’</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">[nbox</span> <span class="pre">API]</span> <span class="pre">-</span> <span class="pre">nbox.Instance(...).ls("/)</span>
+<span class="pre">[nbox</span> <span class="pre">CLI]</span> <span class="pre">-</span> <span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">nbox</span> <span class="pre">build</span> <span class="pre">...</span> <span class="pre">ls</span> <span class="pre">/</span>
+<span class="pre">`</span></code></p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.mv">
+<span class="sig-name descname"><span class="pre">mv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6174</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.mv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.mv" title="Permalink to this definition">#</a></dt>
+<dd><p>Move files to and fro NBX-Build.</p>
+<p>Use ‘nbx://’ as prefix for Instance, all files will be placed relative to
+“/home/ubuntu/project/” folder.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.rm">
+<span class="sig-name descname"><span class="pre">rm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6174</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.rm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.rm" title="Permalink to this definition">#</a></dt>
+<dd><p>Remove file from NBX-Build.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.instance.Instance.remote">
+<span class="sig-name descname"><span class="pre">remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6174</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/instance.html#Instance.remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.instance.Instance.remote" title="Permalink to this definition">#</a></dt>
+<dd><p>Run any command using SSH, in the underlying system it will setup a SSH connection and execute
+any command.</p>
+</dd></dl>
+</dd></dl>
+</div>
 
         </article>
       </div>

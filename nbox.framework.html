@@ -2,14 +2,13 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="ML Frameworks" href="nbox.framework.on_ml.html" /><link rel="prev" title="Subways" href="nbox.subway.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="ML Frameworks" href="nbox.framework.on_ml.html" /><link rel="prev" title="Subways" href="nbox.subway.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>Pushing Understanding - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +35,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -215,19 +212,47 @@
           </label>
         </div>
         <article role="main">
-          <section id="pushing-understanding">
-<h1>Pushing Understanding<a class="headerlink" href="#pushing-understanding" title="Permalink to this headline">#</a></h1>
-<section id="submodules">
+          <div class="section" id="module-nbox.framework">
+<span id="pushing-understanding"></span><h1>Pushing Understanding<a class="headerlink" href="#module-nbox.framework" title="Permalink to this headline">#</a></h1>
+<p>This is the hidden closet with all messy and cool things.</p>
+<p>This submodule has files for managing the adapters for different frameworks. The important
+repositories with the logic start with <code class="docutils literal notranslate"><span class="pre">on_</span></code>, why?</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">on_ml</span></code>: contains the code for exporting and sharing the weights across different    ml libraries like pytorch, tensorflow, haiku, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_operators</span></code>: contains the code for exporting and importing operators from frameworks    like Airflow, Prefect, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_functions</span></code>: This library contains the code for static parsing of python and    creating the NBX-JobFlow</p></li>
+</ol>
+<p>Then there is one main file for auto generating the code</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autogen</span></code>: Which contains the compilers for different code generations like <code class="docutils literal notranslate"><span class="pre">ml.py</span></code>,    there will be more in the future.</p></li>
+</ol>
+<p>Then there are code that is generated:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ml</span></code>: This is the code for all ml frameworks, their exporting and importing using    message-stub format. That is all the user arguments became a dataclass which user has    to implement according to their requirments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*_pb2.py/pyi</span></code>: These are the protobuf stubs generated, as of this writing there is only    one proto called <code class="docutils literal notranslate"><span class="pre">ModelSpec</span></code> which is like <code class="docutils literal notranslate"><span class="pre">JobProto</span></code> but for models.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">protos/</span></code> folder contains all the proto definitions. Some of the files in here do not
+have documentation and that is intentionally to hide all the complexities form the user.
+If you are interested, you can read the source code directly from Github.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.framework.get_model_functions">
+<span class="sig-prename descclassname"><span class="pre">nbox.framework.</span></span><span class="sig-name descname"><span class="pre">get_model_functions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">py_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework.html#get_model_functions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.get_model_functions" title="Permalink to this definition">#</a></dt>
+<dd><p>Try to infer the functions from the model</p>
+</dd></dl>
+<div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="nbox.framework.ml.html">nbox.framework.ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.framework.ml.html">nbox.framework.ml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbox.framework.ml.html#ml-autogen">ML Autogen</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.framework.on_ml.html">ML Frameworks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.framework.on_operators.html">Framework on Operators</a></li>
 </ul>
 </div>
-</section>
-</section>
+</div>
+</div>
 
         </article>
       </div>

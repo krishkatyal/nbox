@@ -2,14 +2,13 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Framework on Operators" href="nbox.framework.on_operators.html" /><link rel="prev" title="Pushing Understanding" href="nbox.framework.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Framework on Operators" href="nbox.framework.on_operators.html" /><link rel="prev" title="Pushing Understanding" href="nbox.framework.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>ML Frameworks - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +35,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -215,9 +212,30 @@
           </label>
         </div>
         <article role="main">
-          <section id="ml-frameworks">
-<h1>ML Frameworks<a class="headerlink" href="#ml-frameworks" title="Permalink to this headline">#</a></h1>
-</section>
+          <div class="section" id="module-nbox.framework.on_ml">
+<span id="ml-frameworks"></span><h1>ML Frameworks<a class="headerlink" href="#module-nbox.framework.on_ml" title="Permalink to this headline">#</a></h1>
+<p>I started with the initial assumption that abstracting away the details of
+processing the data was doable but unfortunately I was not able to get it to
+work reliably. We redid the entire thing by manually defining the code and
+operations but it was still super hard. So the answer was to generate code
+that the user will have to implement.</p>
+<p>It loosely works like this, let’s just say I am trying to write code for
+<code class="docutils literal notranslate"><span class="pre">torch_to_onnx</span></code> module. <code class="docutils literal notranslate"><span class="pre">ModelSpec</span></code> expects that <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code>
+contain all the required information for running this model in another
+location. Now the actual code is only of two lines, but the many different
+frameworks, with their different functions and different inputs means that
+any scope of manual process is gone out the window. So we basically create a
+registry that can store all the information and pass it along to <code class="docutils literal notranslate"><span class="pre">nbox.Model</span></code>.</p>
+<p>The implementation of the registry is a <code class="docutils literal notranslate"><span class="pre">@register</span></code> decorator, which takes
+in all the user information and underneath structures the entire thing and
+stores it, if needed to be written down for compilation.</p>
+<p>Read the code for best understanding.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.framework.on_ml.NboxOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.framework.on_ml.</span></span><span class="sig-name descname"><span class="pre">NboxOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/framework/on_ml.html#NboxOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.framework.on_ml.NboxOptions" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+</div>
 
         </article>
       </div>

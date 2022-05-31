@@ -2,14 +2,13 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators Library" href="nbox.nbxlib.ops.html" /><link rel="prev" title="Quickstart" href="quick.0.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators Library" href="nbox.nbxlib.ops.html" /><link rel="prev" title="Quickstart" href="quick.0.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>nbox.cli module - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
 
@@ -36,12 +35,10 @@
   }
 </style></head>
   <body>
-    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -215,9 +212,88 @@
           </label>
         </div>
         <article role="main">
-          <section id="nbox-cli-module">
-<h1>nbox.cli module<a class="headerlink" href="#nbox-cli-module" title="Permalink to this headline">#</a></h1>
-</section>
+          <div class="section" id="module-nbox.cli">
+<span id="nbox-cli-module"></span><h1>nbox.cli module<a class="headerlink" href="#module-nbox.cli" title="Permalink to this headline">#</a></h1>
+<p>This is CLI for <code class="docutils literal notranslate"><span class="pre">nbox</span></code>, it is meant to be as simple to use as possible.</p>
+<p>..code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nbx
+├── tunnel
+├── home
+├── compile
+├── get
+├── jobs
+│   [staticmethods]
+│   ├── new
+│   ├── status
+│   [initialisation]
+│       ├── id
+│       └── workspace_id
+│   ├── change_schedule
+│   ├──logs
+│   ├──delete
+│   ├──refresh
+│   ├──trigger
+│   ├──pause
+│   └──resume
+└── build (Instance)
+    [staticmethods]
+    ├── new
+    ├── status
+    [initialisation]
+        ├── i
+        ├── workspace_id
+        └── cs_endpoint
+    ├── refresh
+    ├── start
+    ├── stop
+    ├── delete
+    ├── run_py
+    └── __call__
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.cli.open_home">
+<span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">open_home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/cli.html#open_home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.open_home" title="Permalink to this definition">#</a></dt>
+<dd><p>Open current NBX platform</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.cli.get">
+<span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/cli.html#get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Get any command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>api_end</strong> (<em>str</em>) – something like ‘/v1/api’</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.cli.login">
+<span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/cli.html#login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.login" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="nbox.cli.ServeCLINamespace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">ServeCLINamespace</span></span><a class="reference internal" href="_modules/nbox/cli.html#ServeCLINamespace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.ServeCLINamespace" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nbox.cli.ServeCLINamespace.new">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.cli.ServeCLINamespace.new" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a new folder, this can be run on NBX-Jobs or NBX-Deploy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<em>str</em>) – The name of the folder</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.cli.get_dict">
+<span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">get_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/cli.html#get_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.get_dict" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="nbox.cli.main">
+<span class="sig-prename descclassname"><span class="pre">nbox.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.cli.main" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</div>
 
         </article>
       </div>
