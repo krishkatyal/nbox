@@ -2,13 +2,14 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>QuickStart with Deployment - nbox 0.9.7 documentation</title>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>QuickStart with NBX-Deploy - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -35,10 +36,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -120,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.10 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -143,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.10 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -212,22 +215,12 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="quickstart-with-deployment">
-<h1>QuickStart with Deployment<a class="headerlink" href="#quickstart-with-deployment" title="Permalink to this headline">#</a></h1>
-<p>File: <a class="reference external" href="https://github.com/NimbleBoxAI/nbox/blob/staging/recipes/torch_resnet18.py">torch_resnet18.py</a></p>
+          <section id="quickstart-with-nbx-deploy">
+<h1>QuickStart with NBX-Deploy<a class="headerlink" href="#quickstart-with-nbx-deploy" title="Permalink to this headline">#</a></h1>
 <p>Deployment is a major bottleneck for DS/ML engineers to get their systems into production. Unless any
 model is in production there really is no way to complete a project. <code class="docutils literal notranslate"><span class="pre">nbox</span></code> as an SDK makes deployment just one
 command, <strong>literally</strong>!</p>
-<p>When on our platform, first step is to:</p>
-<ul class="simple">
-<li><p>open terminal from the App Bar on your left and type the command below, it initialises the <code class="docutils literal notranslate"><span class="pre">cuda101</span></code> environment and installs our SDK <code class="docutils literal notranslate"><span class="pre">nbox</span></code>:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">cuda101</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">nbox</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>open <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> and type the command <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">nbox</span></code> and restart the notebook.</p></li>
-</ul>
+<p>Open your favorite IDE, whether <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> or <code class="docutils literal notranslate"><span class="pre">VSCode</span></code>.</p>
 <p>First you need to do some imports and you can load your own model, for this tutorial we want to deploy <code class="docutils literal notranslate"><span class="pre">torchvision/resnet18</span></code>. Loading models is super easy, either use a publicly available models or bring in your own models.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbox</span>
 <span class="kn">from</span> <span class="nn">nbox.utils</span> <span class="kn">import</span> <span class="n">get_image</span>
@@ -262,7 +255,7 @@ the URL and API key for your model. Read more about deployment and runtimes <a c
 </pre></div>
 </div>
 <p>Use the model without being concerned with the API hits, as <code class="docutils literal notranslate"><span class="pre">nbox</span></code> handles it internally. So, you can see how easy it is to load a model, test it and deploy it in minutes. You can head over to technical documentation for further reading on this.</p>
-</div>
+</section>
 
         </article>
       </div>

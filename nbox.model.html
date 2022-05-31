@@ -2,13 +2,14 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators" href="nbox.operator.html" /><link rel="prev" title="Operators Library" href="nbox.nbxlib.ops.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Operators" href="nbox.operator.html" /><link rel="prev" title="Operators Library" href="nbox.nbxlib.ops.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>NBX-Models - nbox 0.9.7 documentation</title>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>NBX-Models - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -35,10 +36,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -120,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.10 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -131,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -143,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.10 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -206,192 +209,15 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <div class="section" id="module-nbox.model">
-<span id="nbx-models"></span><h1>NBX-Models<a class="headerlink" href="#module-nbox.model" title="Permalink to this headline">#</a></h1>
-<p>This file has the code to run <code class="docutils literal notranslate"><span class="pre">nbox.Model</span></code> which is top of the stack class. It can load
-any arbitrary model and run it, deploy it (if possible to export), train it (WIP). It has gone
-through it’s fare share of refactoring and is now much simpler, in terms of functions while
-providing very abstract value.</p>
-<div class="section" id="tl-dr">
-<h2>tl;dr<a class="headerlink" href="#tl-dr" title="Permalink to this headline">#</a></h2>
-<p>Underneath this system uses a simple and effective strategy. All the supported methods for
-all the frameworks (tensoflow, pytorch, etc) are in a registery, whenever the user sends
-any model, it is matched and all functions for that framework (eg. <code class="docutils literal notranslate"><span class="pre">sklearn_to_pickle</span></code>)
-are loaded. This then provides first class support eg. <code class="docutils literal notranslate"><span class="pre">delay_forecaster.torch_to_onnx()</span></code>,
-combined with the protobuf style message stub system this provides all configurations to
-user and leaves us incharge of simply executing it.</p>
-</div>
-<div class="section" id="story-mode">
-<h2>Story Mode<a class="headerlink" href="#story-mode" title="Permalink to this headline">#</a></h2>
-<p>Let’s just say your organisation is working on project for predicting “User Fraud Prevention”,
-and you already have a working baseline in scikit learn. You have already trained the model
-and now want to deploy it to production.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># get your baseline model</span>
-<span class="n">sklearn_model</span><span class="p">:</span> <span class="s1">'SklearnModel'</span> <span class="o">=</span> <span class="n">get_skl_model</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="n">fraud_scoring</span><span class="p">:</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="n">sklearn_model</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s2">"predict_proba"</span><span class="p">)</span>
-
-<span class="c1"># sklearn models consume numpy tesors so we send them those</span>
-<span class="n">full_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">get_test_data</span><span class="p">()</span>
-<span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">stock_prediction</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">full_matrix</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-<p>Before deploying you can write simple functions that can be used to preprocess and postprocess
-the incoming data. Your function consumes``UserProto`` or a <code class="docutils literal notranslate"><span class="pre">Dict</span></code> that can be parsed to
-proto. So you create a new model like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_pre</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">UserProto</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-  <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">dict_to_message</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">UserProto</span><span class="p">)</span> <span class="c1"># deployment works on REST so load dict to proto</span>
-
-  <span class="c1"># maybe you want to update your DB</span>
-  <span class="n">sql</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">'INSERT INTO users (id, name) VALUES (</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
-
-  <span class="o">...</span> <span class="c1"># your business logic here</span>
-
-  <span class="k">return</span> <span class="p">{</span><span class="s2">"X"</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">feature_vector</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),}</span> <span class="c1"># NOTE: returns dict</span>
-
-<span class="n">fraud_scoring</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span>
-  <span class="n">model</span> <span class="o">=</span> <span class="n">sklearn_model</span><span class="p">,</span>
-  <span class="n">method</span> <span class="o">=</span> <span class="s2">"predict_proba"</span><span class="p">,</span>
-  <span class="n">pre</span> <span class="o">=</span> <span class="n">_pre</span>
-<span class="p">)</span>
-
-<span class="c1"># You can now pass both proto and dict to the model</span>
-<span class="n">user</span><span class="p">:</span> <span class="n">UserProto</span> <span class="o">=</span> <span class="n">get_user_from_db</span><span class="p">()</span>
-<span class="n">prediction</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">fraud_scoring</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>If you want to add a post processing (eg. here I am just converting the prediction to a list):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_post</span><span class="p">(</span><span class="n">pred</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-  <span class="c1"># maybe you want to update your DB</span>
-  <span class="n">sql</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">'UPDATE users SET fraud_score = </span><span class="si">{</span><span class="n">pred</span><span class="p">[</span><span class="s2">"fraud_score"</span><span class="p">]</span><span class="si">}</span><span class="s1"> WHERE id = </span><span class="si">{</span><span class="n">pred</span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-
-  <span class="o">...</span> <span class="c1"># your business logic here</span>
-
-  <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">pred</span><span class="p">}</span> <span class="c1"># NOTE: returns json serializable dict</span>
-
-<span class="n">fraud_scoring</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span>
-  <span class="n">model</span> <span class="o">=</span> <span class="n">sklearn_model</span><span class="p">,</span>
-  <span class="n">method</span> <span class="o">=</span> <span class="s2">"predict_proba"</span><span class="p">,</span>
-  <span class="n">pre</span> <span class="o">=</span> <span class="n">_pre</span><span class="p">,</span>
-  <span class="n">post</span> <span class="o">=</span> <span class="n">_post</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>When you want to deploy the model, you will need to export it to some format. You don’t have to
-search through documentation to find out supported models, they are already in the object as
-<code class="docutils literal notranslate"><span class="pre">extra_fns</span></code> attribute (<code class="docutils literal notranslate"><span class="pre">fraud_scoring.extra_fns</span></code>). You chose to go the reliable way of pickling
-and unpickling.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbox.framework</span> <span class="kn">import</span> <span class="n">SklearnToPickle</span><span class="p">,</span> <span class="n">NboxOptions</span><span class="p">,</span> <span class="n">ModelSpec</span>
-
-<span class="c1"># get a protobuf dataclass for the spec</span>
-<span class="n">model_spec</span><span class="p">:</span> <span class="n">ModelSpec</span> <span class="o">=</span> <span class="n">fraud_scoring</span><span class="o">.</span><span class="n">sklearn_to_pickle</span><span class="p">(</span>
-  <span class="n">SklearnToPickle</span><span class="p">(</span> <span class="o">...</span> <span class="p">),</span> <span class="c1"># fill values based on your preferance</span>
-  <span class="n">NboxOptions</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="c1"># fill values based on your preferance</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>You have the <code class="docutils literal notranslate"><span class="pre">ModelSpec</span></code> object and you can now deploy it. All the information is packaged
-in a nice serving that will be put on K8s.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">fraud_scoring</span><span class="o">.</span><span class="n">deploy</span><span class="p">(</span>
-  <span class="n">model_spec</span> <span class="o">=</span> <span class="n">model_spec</span><span class="p">,</span>
-  <span class="o">...</span> <span class="c1"># other deployment args</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>Here’s documentation to the code:</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="nbox.model.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nbox.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">nbox.framework.protos.model_spec_pb2.ModelSpec</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.Model" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Top of the stack Model class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>Any</em>) – First input to the model</p></li>
-<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – If there is a specific function to call for the model.
-if <code class="docutils literal notranslate"><span class="pre">None</span></code> then <code class="docutils literal notranslate"><span class="pre">__call__</span></code> will be made else <code class="docutils literal notranslate"><span class="pre">model.method</span></code> will be called.
-Defaults to None.</p></li>
-<li><p><strong>pre</strong> (<em>callable</em>) – preprocessing function to be applied to the <code class="docutils literal notranslate"><span class="pre">input_object</span></code></p></li>
-<li><p><strong>post</strong> (<em>callable</em>) – postprocessing function to be applied to the model prediction</p></li>
-<li><p><strong>model_spec</strong> (<em>ModelSpec</em><em>, </em><em>optional</em>) – ModelSpec object to be used for the model.</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true provides detailed prints. Defaults to False.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.model.Model.deserialise">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deserialise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">nbox.framework.protos.model_spec_pb2.ModelSpec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#nbox.model.Model" title="nbox.model.Model"><span class="pre">nbox.model.Model</span></a></span></span><a class="reference internal" href="_modules/nbox/model.html#Model.deserialise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.Model.deserialise" title="Permalink to this definition">#</a></dt>
-<dd><p>Load <code class="docutils literal notranslate"><span class="pre">ModelSpec</span></code> and <code class="docutils literal notranslate"><span class="pre">folder</span></code> with the files in it and return a <code class="docutils literal notranslate"><span class="pre">Model</span></code> object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model_spec</strong> (<em>Union</em><em>[</em><em>ModelSpec</em><em>, </em><em>Dict</em><em>]</em>) – ModelSpec object or dictionary of the model_spec</p></li>
-<li><p><strong>folder</strong> (<em>str</em>) – folder where the model files are stored</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.model.Model.deploy">
-<span class="sig-name descname"><span class="pre">deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nbox.framework.protos.model_spec_pb2.ModelSpec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id_or_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_unittest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#Model.deploy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.Model.deploy" title="Permalink to this definition">#</a></dt>
-<dd><p>Serve your model on NBX-Deploy <a class="reference external" href="https://nimbleboxai.github.io/nbox/nbox.model.html">read more</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model_spec</strong> (<em>nbox.framework.ModelSpec</em>) – ModelSpec object</p></li>
-<li><p><strong>deployment_id_or_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Deployment information through ID or name, if not
-provided will create a new deployment group with the given name</p></li>
-<li><p><strong>workspace_id</strong> (<em>str</em><em>, </em><em>optional</em>) – Workspace ID to deploy the model to. If not provided
-will use the personal workspace.</p></li>
-<li><p><strong>wait_for_deployment</strong> (<em>bool</em><em>, </em><em>optional</em>) – Block thread till deployment to be ready.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.model.Model.train_on_instance">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train_on_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nbox.instance.html#nbox.instance.Instance" title="nbox.instance.Instance"><span class="pre">nbox.instance.Instance</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">serialised_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shutdown_once_done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_unit_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#Model.train_on_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.Model.train_on_instance" title="Permalink to this definition">#</a></dt>
-<dd><p>Train this model on an NBX-Build Instance. Though this function is generic enough to execute
-any arbitrary code, this is built primarily for internal use.</p>
-<p>EXPERIMENTAL: FEATURES MIGHT BREAK</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>instance</strong> (<a class="reference internal" href="nbox.instance.html#nbox.instance.Instance" title="nbox.instance.Instance"><em>Instance</em></a>) – Instance to train the model on</p></li>
-<li><p><strong>serialised_fn</strong> (<em>callable</em>) – path to the serialised tar file</p></li>
-<li><p><strong>train_fn</strong> (<em>callable</em>) – pure function that trains the model</p></li>
-<li><p><strong>other_args</strong> (<em>Any</em><em>, </em><em>optional</em>) – any other arguments to be passed to the train_fn</p></li>
-<li><p><strong>target_folder</strong> (<em>str</em><em>, </em><em>optional</em>) – folder on the <code class="docutils literal notranslate"><span class="pre">instance</span></code> to run this program in,
-will run in folder <code class="docutils literal notranslate"><span class="pre">/project/{target_folder}/</span></code></p></li>
-<li><p><strong>shutdown_once_done</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, shutdown the instance once training is done.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.model.Model.train_on_job">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train_on_job</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#Model.train_on_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.Model.train_on_job" title="Permalink to this definition">#</a></dt>
-<dd><p>Train this model on NBX-Jobs. This same experience can be given by creating a new job
-that then can then be populated how we currently create a new job using NBX-Jobs CLI
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">nbx</span> <span class="pre">jobs</span> <span class="pre">new</span> <span class="pre">--help</span>
-<span class="pre">`</span></code>
-So should we really add this, is the question!</p>
-<p>EXPERIMENTAL: FEATURES MIGHT BREAK</p>
-</dd></dl>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.model.magic_model">
-<span class="sig-prename descclassname"><span class="pre">nbox.model.</span></span><span class="sig-name descname"><span class="pre">magic_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nbox/model.html#magic_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nbox.model.magic_model" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-</div>
-</div>
+          <section id="nbx-models">
+<h1>NBX-Models<a class="headerlink" href="#nbx-models" title="Permalink to this headline">#</a></h1>
+</section>
 
         </article>
       </div>
@@ -438,28 +264,8 @@ So should we really add this, is the question!</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            Contents
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">NBX-Models</a><ul>
-<li><a class="reference internal" href="#tl-dr">tl;dr</a></li>
-<li><a class="reference internal" href="#story-mode">Story Mode</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

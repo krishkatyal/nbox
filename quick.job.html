@@ -2,13 +2,14 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>QuickStart with NBX-Jobs - nbox 0.9.7 documentation</title>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>QuickStart with NBX-Jobs - nbox 0.9.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -35,10 +36,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -120,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.9.7 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.9.10 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -143,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.9.7 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.9.10 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -212,7 +215,7 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="quickstart-with-nbx-jobs">
+          <section id="quickstart-with-nbx-jobs">
 <h1>QuickStart with NBX-Jobs<a class="headerlink" href="#quickstart-with-nbx-jobs" title="Permalink to this headline">#</a></h1>
 <p>How do create a new job? Go to your terminal</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m nbox <span class="nb">jobs</span> new --help
@@ -247,7 +250,7 @@ Finally, it will create a folder <code class="docutils literal notranslate"><spa
 python3 exe.py deploy <span class="c1"># put your job on production.</span>
 </pre></div>
 </div>
-<div class="section" id="creating-custom-jobs">
+<section id="creating-custom-jobs">
 <h2>Creating Custom Jobs<a class="headerlink" href="#creating-custom-jobs" title="Permalink to this headline">#</a></h2>
 <p>In NimbleBox, you create jobs using a singular class called <code class="docutils literal notranslate"><span class="pre">Operators</span></code>, there is nothing else. You can chain them, recurse through them, call them inside each
 other or any other code structure that you prefer. You can find documentation <a class="reference external" href="nbox_operator.html">here</a>, fundamentally, you need to do two things, define
@@ -268,8 +271,8 @@ the <code class="docutils literal notranslate"><span class="pre">__init__</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">SomeTask</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="faqs">
+</section>
+<section id="faqs">
 <h2>FAQs<a class="headerlink" href="#faqs" title="Permalink to this headline">#</a></h2>
 <p>For FAQs regarding the platform click <a class="reference external" href="https://docs.v2.nimblebox.ai/developer-tools/jobs/get-started">here</a>.</p>
 <p><strong>How to create a new job?</strong></p>
@@ -277,8 +280,8 @@ the <code class="docutils literal notranslate"><span class="pre">__init__</span>
 <p><strong>How do I transfer file to an object store like S3?</strong></p>
 <p>Currently, you can write your own operator or reuse the existing <code class="docutils literal notranslate"><span class="pre">boto3</span></code> code that you have. You don’t have to learn the intricacies
 of our system, you write code the way you like it.</p>
-</div>
-</div>
+</section>
+</section>
 
         </article>
       </div>
